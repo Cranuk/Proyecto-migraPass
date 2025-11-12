@@ -7,23 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" href="{{ asset('migraPass.png')}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>MigraPass - @yield('title')</title>
+    <title>MIGRAPASS - @yield('title')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    {{--@include('includes.header')--}}
     <main>
-        <div class="container">
-            <div class="container-content">
-                <!-- Contenido dinamico de la pagina -->
+        <div class="block-header border">
+            @include('includes.header')
+        </div>
+
+        <div class="main-body border">
+            <div class="block-sidebar">
+                @include('includes.sidebar')
+            </div>
+
+            <div class="block-content border">
                 @yield('content-main')
             </div>
         </div>
+
+        <div class="block-footer border">
+            @include('includes.footer')
+        </div>
     </main>
-    {{--@include('includes.footer')--}}
+
 </body>
 </html>

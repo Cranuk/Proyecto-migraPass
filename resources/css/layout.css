@@ -1,0 +1,24 @@
+/* Contenedor principal de la pagina */
+.block-header,
+.block-footer {
+    width: 100%;
+    padding: 10px;
+}
+
+/* Contenedor para sidebar + contenido */
+.main-body {
+    flex: 1;
+    display: flex;
+}
+
+/* SIDEBAR a la izquierda */
+.block-sidebar {
+    width: 20%;
+    padding: 10px;
+}
+
+/* CONTENIDO principal */
+.block-content {
+    flex: 1;
+    padding: 10px;
+}

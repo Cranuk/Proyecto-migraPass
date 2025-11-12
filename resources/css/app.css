@@ -1,4 +1,7 @@
 /* ANCHOR: mis archivos css */
 @import './global.css';
 @import './colors.css';
+@import './layout.css';
+@import './header.css';
+@import './sidebar.css';
 @import './footer.css';
