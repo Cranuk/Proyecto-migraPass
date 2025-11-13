@@ -1,7 +1,7 @@
 <div class="header">
     <div>Empresas</div>
 
-    <a href="#" wire:click.prevent="openModal" class="button add">Añadir empresa</a>
+    <div wire:click.prevent="openModal" class="button add">Añadir empresa</div>
 
     @if($open)
     <!-- Fondo oscuro (click para cerrar) -->

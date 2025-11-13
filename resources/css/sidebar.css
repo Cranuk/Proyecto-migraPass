@@ -1,4 +1,6 @@
 .block-sidebar {
+    border-right: 1px solid var(--border-color);
+
     .sidebar-header {
         display: flex;
         justify-content: space-between;
@@ -17,7 +19,9 @@
 
     }
 
-    ul li a {
+    ul li div {
+        cursor: pointer;
+
         .sidebar-item {
             display: flex;
             justify-content: space-between;

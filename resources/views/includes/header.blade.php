@@ -19,7 +19,6 @@
     </div>
 
     <div class="nav-right">
-        <a href="#">Usuarios</a>
         <a href="#">Infraestructura</a>
     </div>
 </nav>
