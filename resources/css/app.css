@@ -4,4 +4,6 @@
 @import './layout.css';
 @import './header.css';
 @import './sidebar.css';
+@import './modal.css';
+@import './form.css';
 @import './footer.css';

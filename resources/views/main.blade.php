@@ -4,6 +4,10 @@
 
 @section('content-main')
 
-
+<section class="section-dashboard">
+    <div class="header">
+        <div>Panel de control</div>
+    </div>
+</section>
 
 @endsection

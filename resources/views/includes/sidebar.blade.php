@@ -1,19 +1,17 @@
-<div class="sidebar-header">
-    <span>Empresas</span><button class="button add">Añadir empresa</button>
-</div>
+<livewire:add-company />
 <ul>
     <li>
-        <a href="#">
+        <a href={{ route('users.index') }}>
             <div class="sidebar-item">
-                <span class="alias">
+                <div class="alias">
                     E1
-                </span>
-                <span class="name">
+                </div>
+                <div class="name">
                     Empresa1
-                </span>
-                <span class="amount">
+                </div>
+                <div class="amount">
                     5 usuarios
-                </span>
+                </div>
             </div>
         </a>
     </li>

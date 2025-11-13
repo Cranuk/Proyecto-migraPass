@@ -13,6 +13,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>MIGRAPASS - @yield('title')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 <body>
     <main>
@@ -27,6 +28,8 @@
 
             <div class="block-content border">
                 @yield('content-main')
+                @yield('user-content')
+                @yield('device-content')
             </div>
         </div>
 
@@ -34,6 +37,6 @@
             @include('includes.footer')
         </div>
     </main>
-
+    @livewireScripts
 </body>
 </html>
