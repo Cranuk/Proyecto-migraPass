@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Carbon::setLocale('es');
+        Blade::directive('acronym', function ($expression) {
+            return "<?php echo \App\Helpers\Helpers::getAcronym($expression); ?>";
+        });
     }
 }

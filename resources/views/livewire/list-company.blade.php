@@ -2,12 +2,12 @@
     @if($hasCompanies)
     <ul>
         @foreach ($companies as $company)
-        <li>
+        <li @if($selectedCompany===$company->id) class="active" @endif>
             <div wire:click="selectCompany({{ $company->id }})">
-                <div class="sidebar-item">
-                    <div class="alias">TEST</div>
+                <div class="item">
+                    <div class="alias">@acronym($company->name)</div>
                     <div class="name">{{ $company->name }}</div>
-                    <div class="amount">0 usuarios</div>
+                    <div class="amount">{{ $company->users_count }} usuarios</div>
                 </div>
             </div>
         </li>

@@ -6,19 +6,34 @@
 }
 
 /* Contenedor para sidebar + contenido */
-.main-body {
+.block-main {
     flex: 1;
     display: flex;
 }
 
 /* SIDEBAR a la izquierda */
-.block-sidebar {
+.sidebar {
     width: 20%;
     padding: 10px;
+    border-right: 1px solid var(--border-color);
 }
 
 /* CONTENIDO principal */
-.block-content {
+.content {
     flex: 1;
     padding: 10px;
+}
+
+.section-content {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.content-user {
+    width: 40%;
+}
+
+.content-device {
+    width: 60%;
 }

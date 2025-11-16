@@ -8,25 +8,46 @@ use Livewire\Component;
 
 class ListUser extends Component
 {
-
-    public $companyId; // NOTE: variable publica que recibe el id de la empresa seleccionada
+    public $companyId;
     public $hasUsers = false;
+    public $users;
 
-    #[On('loadUsers')]
-    public function loadUsers($id)
+    public function mount()
     {
+        $this->companyId = null;
+        $this->users;
+    }
+
+    // evento que proviene de listCompany.php
+    #[On('loadUsers')]
+    public function loadUsers($id = null)
+    {
+        if (!$id) return;
+
         $this->companyId = $id;
+        $this->refreshUsers();
+    }
+
+    // evento que proviene de addUser.php
+    #[On('userAdded')]
+    public function userAdded($companyId = null)
+    {
+        if(!$companyId) return;
+        if ($this->companyId == $companyId) {
+            $this->refreshUsers();
+        }
+    }
+
+    private function refreshUsers()
+    {
+        $this->users = User::where('company_id', $this->companyId)->get();
+        $this->hasUsers = $this->users->isNotEmpty();
     }
 
     public function render()
     {
-        $users = User::where('company_id', $this->companyId)->get();
-        $count = $users->count();
-        $this->hasUsers = $users->isNotEmpty();
-
         return view('livewire.list-user', [
-            'users' => $users,
-            'count' => $count,
+            'users' => $this->users,
             'hasUsers' => $this->hasUsers,
         ]);
     }

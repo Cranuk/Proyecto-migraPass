@@ -21,14 +21,14 @@
             @include('includes.header')
         </div>
 
-        <div class="main-body">
-            <div class="block-sidebar">
+        <div class="block-main">
+            <div class="sidebar">
                 <!-- NOTE: componentes que tiene el sidebar donde se encuentra la funcionalidad para agregar y listar las empresas-->
                 @livewire('add-company')
                 @livewire('list-company')
             </div>
 
-            <div class="block-content">
+            <div class="content">
                 @yield('content-main')
             </div>
         </div>

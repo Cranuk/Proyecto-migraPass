@@ -12,37 +12,4 @@
             font-size: 12px;
         }
     }
-
-    ul li:hover {
-        background-color: var(--background-hover);
-        border-radius: 5px;
-
-    }
-
-    ul li div {
-        cursor: pointer;
-
-        .sidebar-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 5px;
-
-            div {
-                font-size: 12px;
-                padding-right: 5px;
-            }
-
-            .alias {
-                color: var(--purple);
-            }
-
-            .name {
-                color: var(--text-primary-color);
-            }
-
-            .amount {
-                color: var(--text-secondary-color);
-            }
-        }
-    }
 }

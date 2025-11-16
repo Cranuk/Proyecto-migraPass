@@ -4,8 +4,9 @@
 
 @section('content-main')
 
-<section>
+<section class="section-content">
     @livewire('list-user')
+    @livewire('list-device')
 </section>
 
 @endsection

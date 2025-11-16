@@ -23,6 +23,21 @@ a {
 
 ul {
     list-style: none;
+
+    li:hover {
+        background-color: var(--background-hover);
+        border-radius: 5px;
+
+    }
+
+    li.active {
+        background-color: var(--background-active);
+        border-radius: 5px;
+    }
+}
+
+div {
+    font-size: 12px;
 }
 
 .space-5 {
@@ -72,13 +87,68 @@ ul {
     align-items: baseline;
     padding: 10px 0px;
     margin-bottom: 30px;
-
-    div {
-        font-size: 12px;
-    }
 }
 
 .message {
     font-size: 12px;
     padding: 10px 5px;
+}
+
+
+ul li div {
+    cursor: pointer;
+
+    &.item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 5px;
+
+        div {
+            padding-right: 5px;
+        }
+
+    }
+
+    &.item-content {
+        display: flex;
+        padding: 10px 5px;
+        align-items: center;
+        gap: 20px;
+
+        div {
+            padding-right: 5px;
+        }
+
+        .card-user {
+            display: flex;
+            flex-direction: column;
+
+            .data-user {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+    }
+}
+
+.alias {
+    color: var(--yellow);
+}
+
+.name {
+    color: var(--purple);
+}
+
+.surname {
+    color: var(--green);
+}
+
+.sector,
+.fecha {
+    color: var(--yellow);
+    font-style: italic;
+}
+
+.amount {
+    color: var(--text-secondary-color);
 }
