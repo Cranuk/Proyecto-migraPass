@@ -39,7 +39,7 @@
                 padding: 8px 12px 8px 35px;
                 background-color: var(--background-panel);
                 border: 1px solid #ccc;
-                border-radius: 6px;
+                border-radius: 5px;
                 outline: none;
 
                 &:focus {

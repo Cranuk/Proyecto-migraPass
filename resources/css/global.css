@@ -64,10 +64,15 @@ div {
     border: 1px solid var(--border-color);
 }
 
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
 .button {
     padding: 8px 12px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 12px;
 
@@ -95,10 +100,9 @@ div {
 }
 
 
-ul li div {
-    cursor: pointer;
-
+div {
     &.item {
+        cursor: pointer;
         display: flex;
         justify-content: space-between;
         padding: 10px 5px;
@@ -110,6 +114,7 @@ ul li div {
     }
 
     &.item-content {
+        cursor: pointer;
         display: flex;
         padding: 10px 5px;
         align-items: center;
@@ -128,7 +133,13 @@ ul li div {
                 flex-direction: row;
             }
         }
+
+        &.no-pointer {
+            cursor: default;
+            padding: 0px;
+        }
     }
+
 }
 
 .alias {
@@ -151,4 +162,23 @@ ul li div {
 
 .amount {
     color: var(--text-secondary-color);
+    font-size: 10px;
+}
+
+.content-app,
+.content-device {
+    background-color: var(--background-card);
+    padding: 10px 5px;
+    border-radius: 5px;
+}
+
+.content-device {
+    margin-bottom: 15px;
+}
+
+.content-app div,
+.content-device div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
