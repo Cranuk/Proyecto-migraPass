@@ -9,14 +9,9 @@ use Livewire\Component;
 class ListUser extends Component
 {
     public $companyId;
-    public $hasUsers = false;
+    public $hasUsers;
     public $users;
-
-    public function mount()
-    {
-        $this->companyId = null;
-        $this->users;
-    }
+    public $selectedUser;
 
     // evento que proviene de listCompany.php
     #[On('loadUsers')]
@@ -44,11 +39,16 @@ class ListUser extends Component
         $this->hasUsers = $this->users->isNotEmpty();
     }
 
+    public function selectUser($userId)
+    {
+        $this->selectedUser = $userId;
+        $this->dispatch('showTools', id:$userId)->to(UserTool::class); // llamamos el evento para mostrar los botones para agregar dispositivos, aplicaciones y el nombre del usuario
+        $this->dispatch('loadDevice', id:$userId)->to(ListDevice::class); // llamamos el evento para actualizar la lista de dispositivos
+        $this->dispatch('loadApp', id:$userId)->to(ListApp::class); // llamamos el evento para actualizar la lista de aplicaciones
+    }
+
     public function render()
     {
-        return view('livewire.list-user', [
-            'users' => $this->users,
-            'hasUsers' => $this->hasUsers,
-        ]);
+        return view('livewire.list-user');
     }
 }

@@ -5,9 +5,9 @@
     @if($hasUsers)
     <ul>
         @foreach ($users as $user)
-        <li>
-            <div class="item-content">
-                <div class="alias">@acronym($user->name)</div>
+        <li @if($selectedUser===$user->id) class="active" @endif>
+            <div class="item-content" wire:click="selectUser({{ $user->id }})">
+                <div class=" alias">@acronym($user->name)</div>
                 <div class="card-user">
                     <div class="data-user">
                         <div class="name">{{ $user->name }}</div>

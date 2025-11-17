@@ -12,7 +12,7 @@ class TypeDevice extends Model
     protected $table = 'type_devices';
 
     protected $fillable = [
-        'name',
+        'name'
     ];
 
     public function devices()

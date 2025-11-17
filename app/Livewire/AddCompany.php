@@ -10,11 +10,6 @@ class AddCompany extends Component
     public $open = false;
     public $name = '';
 
-    public function mount()
-    {
-        $this->open = false;
-    }
-
     public function saveCompany(){
         $this->validate([
             'name' => 'required|string|min:3|max:255',

@@ -8,13 +8,9 @@ use Livewire\Component;
 
 class ListCompany extends Component
 {
-    public $hasCompanies = false;
-    public $selectedCompany = null;
-
-    public function mount()
-    {
-        $this->selectedCompany = null;
-    }
+    // NOTE: las variables que son publicas automaticamente son llamadas por livewire para poder ser usadas en la vista del componente
+    public $hasCompanies;
+    public $selectedCompany;
 
     // evento que proviene de AddCompany.php
     #[On('companyAdded')]
@@ -30,16 +26,15 @@ class ListCompany extends Component
     {
         $this->selectedCompany = $companyId;
         $this->dispatch('loadUsers', id:$companyId)->to(ListUser::class); // llamamos el evento para actualizar la lista de usuarios
+        $this->dispatch('hideTools')->to(UserTool::class); // llamamos a este evento para ocultar las herramientas para agregar dispositivos y aplicaciones hasta que seleccione un usuario nuevamente
     }
 
     public function render()
     {
-        $allCompanies = Company::withCount('users')->get();
+        $allCompanies = Company::withCount('users')->get(); // NOTE: esta variable como se declaro en render se debe enviar a la vista para ser usada
         $this->hasCompanies = $allCompanies->isNotEmpty();
         return view('livewire.list-company', [
-            'companies' => $allCompanies,
-            'hasCompanies' => $this->hasCompanies,
-            'selectedCompany' => $this->selectedCompany,
+            'companies' => $allCompanies
         ]);
     }
 }

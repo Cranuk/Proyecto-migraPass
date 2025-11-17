@@ -11,16 +11,10 @@ class AddUser extends Component
 
     public $open = false;
     public $companies;
-    public $name = '';
-    public $surname = '';
-    public $sector = '';
+    public $name;
+    public $surname;
+    public $sector;
     public $companyId;
-
-    public function mount()
-    {
-        $this->open = false;
-        $this->companyId;
-    }
 
     public function saveUser(){
         $this->validate([
@@ -55,8 +49,6 @@ class AddUser extends Component
     public function render()
     { 
         $this->companies = Company::all();
-        return view('livewire.add-user', [
-            'companies' => $this->companies,
-        ]);
+        return view('livewire.add-user');
     }
 }
