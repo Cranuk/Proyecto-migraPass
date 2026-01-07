@@ -24,6 +24,8 @@ class AddUser extends Component
             'companyId' => 'required|exists:companies,id',
         ]);
 
+        sleep(2);
+
         User::create([
             'name' => $this->name,
             'surname' => $this->surname,

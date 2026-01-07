@@ -12,8 +12,10 @@ class AddCompany extends Component
 
     public function saveCompany(){
         $this->validate([
-            'name' => 'required|string|min:3|max:255',
+            'name' => 'required|string|min:3|max:255|unique:companies,name',
         ]);
+
+        sleep(2);
 
         Company::create([
             'name' => $this->name

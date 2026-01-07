@@ -40,6 +40,18 @@ div {
     font-size: 12px;
 }
 
+.alert {
+    width: fit-content;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: var(--white);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.alert-notice {
+    background-color: var(--background-main);
+}
+
 .space-5 {
     margin-top: 5px;
 }
@@ -76,6 +88,10 @@ div {
     cursor: pointer;
     font-size: 12px;
 
+    &.small {
+        padding: 4px 8px;
+    }
+
     &.add {
         background-color: var(--light-blue);
     }
@@ -84,6 +100,19 @@ div {
         background-color: var(--gray);
         border: 1px solid var(--border-color);
     }
+
+    &.delete {
+        background-color: var(--red);
+    }
+
+    &>span {
+        font-size: inherit;
+        color: inherit;
+        display: inline-flex;
+        align-items: center;
+        line-height: 1;
+    }
+
 }
 
 .header {
@@ -105,6 +134,7 @@ div {
         cursor: pointer;
         display: flex;
         justify-content: space-between;
+        align-items: baseline;
         padding: 10px 5px;
 
         div {
@@ -164,6 +194,8 @@ div {
     color: var(--text-secondary-color);
     font-size: 10px;
 }
+
+.tools {}
 
 .content-app,
 .content-device {
