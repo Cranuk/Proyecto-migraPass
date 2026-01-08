@@ -18,7 +18,10 @@
             <path d="M21 21l-6 -6" /></svg>
     </div>
 
-    <div class="nav-right">
-        <a href="#">Infraestructura</a>
-    </div>
+    {{--
+        <div class="nav-right">
+            <a href="#">Infraestructura</a>
+        </div>
+    --}}
+
 </nav>

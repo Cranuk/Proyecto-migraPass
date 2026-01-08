@@ -24,7 +24,7 @@ class AddUser extends Component
             'companyId' => 'required|exists:companies,id',
         ]);
 
-        sleep(2);
+        sleep(1);
 
         User::create([
             'name' => $this->name,
@@ -45,6 +45,9 @@ class AddUser extends Component
 
     public function closeModal()
     {
+        sleep(1);
+        $this->reset(['name', 'surname', 'sector', 'companyId']);
+        $this->resetErrorBag();
         $this->open = false;
     }
 

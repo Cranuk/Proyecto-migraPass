@@ -1,10 +1,5 @@
 <div>
-    @if($message)
-    <div class="alert alert-notice">
-        {{ $message }}
-        <button wire:click="$set('message', '')">x</button>
-    </div>
-    @endif
+    @include('includes.alert')
     @if($hasCompanies)
     <ul>
         @foreach ($companies as $company)

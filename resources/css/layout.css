@@ -5,6 +5,10 @@
     padding: 10px;
 }
 
+.block-footer {
+    padding: 0;
+}
+
 /* Contenedor para sidebar + contenido */
 .block-main {
     flex: 1;

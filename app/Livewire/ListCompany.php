@@ -12,7 +12,7 @@ class ListCompany extends Component
     public $hasCompanies;
     public $selectedCompany;
     public $confirmingDeletion = null;
-    public $message = '';
+    public $info = '';
 
     // evento que proviene de AddCompany.php
     #[On('companyAdded')]
@@ -44,7 +44,7 @@ class ListCompany extends Component
 
         if ($company) {
             if ($company->users()->count() > 0) {
-                        $this->message = "No se puede eliminar: Esta empresa tiene usuarios.";
+                        $this->info = "❌ Esta empresa tiene usuarios.";
                         $this->confirmingDeletion = null;
                         return; 
             }
@@ -53,7 +53,7 @@ class ListCompany extends Component
             $this->confirmingDeletion = null;
             
             if ($this->selectedCompany === $id) {
-                $this->message = "Empresa eliminada correctamente.";
+                $this->info = "✅ Empresa eliminada correctamente.";
                 $this->selectedCompany = null;
                 $this->dispatch('loadUsers', id: null)->to(ListUser::class);
             }

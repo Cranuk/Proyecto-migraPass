@@ -15,7 +15,7 @@ class AddCompany extends Component
             'name' => 'required|string|min:3|max:255|unique:companies,name',
         ]);
 
-        sleep(2);
+        sleep(1);
 
         Company::create([
             'name' => $this->name
@@ -33,6 +33,9 @@ class AddCompany extends Component
 
     public function closeModal()
     {
+        sleep(1);
+        $this->reset(['name']);
+        $this->resetErrorBag();
         $this->open = false;
     }
 
