@@ -6,7 +6,7 @@
 
 <section class="section-content">
     @livewire('list-user')
-    @livewire('user-tool')
+    @livewire('list-app')
 </section>
 
 @endsection

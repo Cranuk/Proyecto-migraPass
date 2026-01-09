@@ -60,7 +60,6 @@ class ListUser extends Component
 
             if ($this->selectedUser === $id) {
                 $this->selectedUser = null;
-                $this->dispatch('showTools', id: null)->to(UserTool::class);
                 $this->dispatch('loadApp', id: null)->to(ListApp::class);
             }
 
@@ -77,7 +76,6 @@ class ListUser extends Component
     public function selectUser($userId)
     {
         $this->selectedUser = $userId;
-        $this->dispatch('showTools', id:$userId)->to(UserTool::class); // llamamos el evento para mostrar los botones para agregar dispositivos, aplicaciones y el nombre del usuario
         $this->dispatch('loadApp', id:$userId)->to(ListApp::class); // llamamos el evento para actualizar la lista de aplicaciones
     }
 

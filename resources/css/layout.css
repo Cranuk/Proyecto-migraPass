@@ -22,8 +22,13 @@
     border-right: 1px solid var(--border-color);
 }
 
+.content-companies {
+    padding-right: 10px;
+}
+
 /* CONTENIDO principal */
 .content {
+    width: 80%;
     flex: 1;
     padding: 10px;
 }
@@ -34,11 +39,17 @@
     gap: 5px;
 }
 
-.content-user {
-    width: 40%;
+.content-users {
+    width: 50%;
     padding-right: 10px;
 }
 
-.content-tools {
-    width: 60%;
+.content-apps {
+    width: 50%;
+}
+
+.list-app div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

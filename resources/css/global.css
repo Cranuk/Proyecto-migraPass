@@ -210,24 +210,6 @@ div {
 
 .tools {}
 
-.content-app,
-.content-device {
-    background-color: var(--background-card);
-    padding: 10px 5px;
-    border-radius: 5px;
-}
-
-.content-device {
-    margin-bottom: 15px;
-}
-
-.content-app div,
-.content-device div {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
 .relative {
     position: relative;
 }

@@ -3,12 +3,14 @@
 namespace App\Livewire;
 
 use App\Models\Aplication;
+use App\Models\User;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ListApp extends Component
 {
     public $userId;
+    public $userSelected;
     public $apps;
     public $hasApps;
 
@@ -32,6 +34,7 @@ class ListApp extends Component
             $this->hasApps = false;
             return;
         }
+        $this->userSelected = User::find($this->userId);
         $this->apps = Aplication::where('user_id', $this->userId)->get();
         $this->hasApps = $this->apps->isNotEmpty();
     }

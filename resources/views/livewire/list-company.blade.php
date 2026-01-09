@@ -1,4 +1,4 @@
-<div>
+<section class="content-companies">
     @include('includes.alert')
     @if($hasCompanies)
     <ul>
@@ -21,4 +21,4 @@
     @else
     <p class="message">No hay empresas registradas.</p>
     @endif
-</div>
+</section>

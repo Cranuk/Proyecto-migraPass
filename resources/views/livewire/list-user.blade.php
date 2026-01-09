@@ -1,4 +1,4 @@
-<div class="content-user">
+<section class="content-users">
     @livewire('add-user')
     @if($companyId)
     @include('includes.alert')
@@ -35,4 +35,4 @@
     @else
     <p class="message">Seleccioná una empresa para ver sus usuarios.</p>
     @endif
-</div>
+</section>

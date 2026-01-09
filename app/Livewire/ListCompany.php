@@ -28,7 +28,6 @@ class ListCompany extends Component
     {
         $this->selectedCompany = $companyId;
         $this->dispatch('loadUsers', id:$companyId)->to(ListUser::class); // llamamos el evento para actualizar la lista de usuarios
-        $this->dispatch('hideTools')->to(UserTool::class); // llamamos a este evento para ocultar las herramientas para agregar dispositivos y aplicaciones hasta que seleccione un usuario nuevamente
     }
 
     public function confirmDelete($id)
