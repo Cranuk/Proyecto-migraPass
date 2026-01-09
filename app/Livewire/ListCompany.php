@@ -43,10 +43,10 @@ class ListCompany extends Component
         $company = Company::find($id);
 
         if ($company) {
-            if ($company->users()->count() > 0) {
-                        $this->info = "❌ Esta empresa tiene usuarios.";
-                        $this->confirmingDeletion = null;
-                        return; 
+            if ($company->users()->exists()) {
+                $this->info = "❌ Esta empresa tiene usuarios.";
+                $this->confirmingDeletion = null;
+                return;
             }
             $company->delete();
             

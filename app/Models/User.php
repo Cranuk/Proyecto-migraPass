@@ -23,7 +23,7 @@ class User extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function devices()
+    public function aplications()
     {
         return $this->hasMany(Device::class);
     }

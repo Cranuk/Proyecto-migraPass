@@ -20,10 +20,13 @@ class Device extends Model
         'notes',
     ];
 
+    /*
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+    */
+    
 
     public function typeDevice()
     {

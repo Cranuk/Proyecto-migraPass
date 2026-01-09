@@ -1,7 +1,7 @@
 <div class="content-user">
     @livewire('add-user')
     @if($companyId)
-
+    @include('includes.alert')
     @if($hasUsers)
     <ul>
         @foreach ($users as $user)
@@ -19,6 +19,11 @@
                         <div class="fecha">{{ $user->created_at }}</div>
                     </div>
                 </div>
+                @if($selectedUser === $user->id)
+                <div class="tools">
+                    @include('includes.buttons.button-delete-user', ['userId' => $user->id])
+                </div>
+                @endif
             </div>
         </li>
         @endforeach

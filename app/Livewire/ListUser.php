@@ -12,6 +12,8 @@ class ListUser extends Component
     public $hasUsers;
     public $users;
     public $selectedUser;
+    public $confirmingDeletion = null;
+    public $info = '';
 
     // evento que proviene de listCompany.php
     #[On('loadUsers')]
@@ -39,11 +41,43 @@ class ListUser extends Component
         $this->hasUsers = $this->users->isNotEmpty();
     }
 
+    public function confirmDelete($id)
+    {
+        if ($this->confirmingDeletion !== $id) {
+            $this->confirmingDeletion = $id;
+            return;
+        }
+
+        $user = User::find($id);
+
+        if ($user) {
+            // Validación de seguridad
+            if ($user->aplications()->exists()) {
+                $this->info = "❌ Este usuario tiene aplicaciones registradas.";
+                $this->confirmingDeletion = null;
+                return; 
+            }
+
+            if ($this->selectedUser === $id) {
+                $this->selectedUser = null;
+                $this->dispatch('showTools', id: null)->to(UserTool::class);
+                $this->dispatch('loadApp', id: null)->to(ListApp::class);
+            }
+
+            $user->delete();
+            
+            $this->confirmingDeletion = null;
+            $this->info = "✅ Usuario eliminado correctamente.";
+            
+            // Refrescamos la lista de usuarios actual
+            $this->refreshUsers(); 
+        }
+    }
+
     public function selectUser($userId)
     {
         $this->selectedUser = $userId;
         $this->dispatch('showTools', id:$userId)->to(UserTool::class); // llamamos el evento para mostrar los botones para agregar dispositivos, aplicaciones y el nombre del usuario
-        $this->dispatch('loadDevice', id:$userId)->to(ListDevice::class); // llamamos el evento para actualizar la lista de dispositivos
         $this->dispatch('loadApp', id:$userId)->to(ListApp::class); // llamamos el evento para actualizar la lista de aplicaciones
     }
 

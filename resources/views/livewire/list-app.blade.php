@@ -11,10 +11,14 @@
             </svg>
             Aplicaciones
         </div>
+        @if($hasApps)
         <ul>
             <li>1</li>
             <li>2</li>
             <li>3</li>
         </ul>
+        @else
+        <p class="message">No hay aplicaciones registrados para este usuario.</p>
+        @endif
     </section>
 </div>

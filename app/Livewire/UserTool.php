@@ -20,8 +20,11 @@ class UserTool extends Component
     #[On('showTools')]
     public function showTools($id = null)
     {
-        if(!$id) return;
-        $this->userSelected = User::findOrFail($id);
+        if (!$id) {
+            $this->userSelected = null;
+            return;
+        }
+        $this->userSelected = User::find($id);
     }
 
     public function render()

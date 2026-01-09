@@ -14,12 +14,24 @@ class ListApp extends Component
 
     #[On('loadApp')]
     public function loadApp($id){
-        if(!$id) return;
+        $this->userId = $id;
+
+        if (!$id) {
+            $this->apps = collect();
+            $this->hasApps = false;
+            return;
+        }
+
         $this->refreshApps();
     }
 
     private function refreshApps()
     {
+        if (!$this->userId) {
+            $this->apps = collect(); 
+            $this->hasApps = false;
+            return;
+        }
         $this->apps = Aplication::where('user_id', $this->userId)->get();
         $this->hasApps = $this->apps->isNotEmpty();
     }

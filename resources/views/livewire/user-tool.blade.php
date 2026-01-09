@@ -16,11 +16,9 @@
             </div>
         </div>
         <div class="buttons">
-            @livewire('add-device')
             @livewire('add-app')
         </div>
     </div>
-    @livewire('list-device')
     @livewire('list-app')
     @endif
 </div>
