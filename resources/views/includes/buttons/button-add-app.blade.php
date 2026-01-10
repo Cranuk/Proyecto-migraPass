@@ -1,22 +1,18 @@
-<button type="button" wire:click.stop="confirmDelete({{ $userId }})" wire:loading.attr="disabled" wire:target="confirmDelete" class="button cancel small {{ $confirmingDeletion === $userId ? 'delete' : '' }}" title="Eliminar">
+<button type="button" wire:click="openModal" wire:loading.attr="disabled" wire:target="openModal" class="button add" title="Agregar aplicacion">
 
-    <span wire:loading.remove wire:target="confirmDelete">
-        @if($confirmingDeletion === $userId)
-        <span style="font-weight: bold; font-size: 0.7rem;">¿BORRAR?</span>
-        @else
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+    <span wire:loading.remove wire:target="openModal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-apps">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M4 7l16 0" />
-            <path d="M10 11l0 6" />
-            <path d="M14 11l0 6" />
-            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+            <path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+            <path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+            <path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+            <path d="M14 7l6 0" />
+            <path d="M17 4l0 6" />
         </svg>
-        @endif
     </span>
 
-    <span wire:loading wire:target="confirmDelete">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="hsl(0, 0%, 100%)" viewBox="0 0 24 24">
+    <span wire:loading wire:target="openModal">
+        <svg width="24" height="24" fill="hsl(0, 0%, 100%)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <rect x="1" y="4" width="6" height="14" opacity="1">
                 <animate id="spinner_aqiq" begin="0;spinner_xVBj.end-0.25s" attributeName="y" dur="0.75s" values="1;5" fill="freeze" />
                 <animate begin="0;spinner_xVBj.end-0.25s" attributeName="height" dur="0.75s" values="22;14" fill="freeze" />

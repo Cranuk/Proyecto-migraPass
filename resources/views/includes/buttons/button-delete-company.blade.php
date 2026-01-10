@@ -1,6 +1,6 @@
-<button type="button" wire:click.stop="confirmDelete({{ $companyId }})" wire:loading.attr="disabled" wire:target="confirmDelete({{ $companyId }})" class="button cancel small {{ $confirmingDeletion === $companyId ? 'delete' : '' }}" title="Eliminar">
+<button type="button" wire:click.stop="confirmDelete({{ $companyId }})" wire:loading.attr="disabled" wire:target="confirmDelete" class="button cancel small {{ $confirmingDeletion === $companyId ? 'delete' : '' }}" title="Eliminar">
 
-    <span wire:loading.remove wire:target="confirmDelete({{ $companyId }})">
+    <span wire:loading.remove wire:target="confirmDelete">
         @if($confirmingDeletion === $companyId)
         <span style="font-weight: bold; font-size: 0.7rem;">¿BORRAR?</span>
         @else
@@ -15,7 +15,7 @@
         @endif
     </span>
 
-    <span wire:loading wire:target="confirmDelete({{ $companyId }})">
+    <span wire:loading wire:target="confirmDelete">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="hsl(0, 0%, 100%)" viewBox="0 0 24 24">
             <rect x="1" y="4" width="6" height="14" opacity="1">
                 <animate id="spinner_aqiq" begin="0;spinner_xVBj.end-0.25s" attributeName="y" dur="0.75s" values="1;5" fill="freeze" />

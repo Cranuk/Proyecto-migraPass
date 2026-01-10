@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\User;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Illuminate\Support\Facades\Log;
 
 class ListUser extends Component
 {
@@ -41,15 +42,20 @@ class ListUser extends Component
         $this->hasUsers = $this->users->isNotEmpty();
     }
 
-    public function confirmDelete($id)
+    public function selectUser($userId)
     {
-        if ($this->confirmingDeletion !== $id) {
-            $this->confirmingDeletion = $id;
+        $this->selectedUser = $userId;
+        $this->dispatch('loadApp', id:$userId)->to(ListApp::class); // llamamos el evento para actualizar la lista de aplicaciones
+    }
+
+    public function confirmDelete($userId)
+    {
+        if ($this->confirmingDeletion !== $userId) {
+            $this->confirmingDeletion = $userId;
             return;
         }
 
-        $user = User::find($id);
-
+        $user = User::find($userId);
         if ($user) {
             // Validación de seguridad
             if ($user->aplications()->exists()) {
@@ -58,25 +64,21 @@ class ListUser extends Component
                 return; 
             }
 
-            if ($this->selectedUser === $id) {
-                $this->selectedUser = null;
-                $this->dispatch('loadApp', id: null)->to(ListApp::class);
+            if ($this->selectedUser == $userId) {
+                Log::info("El usuario a borrar es el seleccionado. Limpiando variables...");
+                
+                $this->selectedUser = null; 
+                $this->dispatch('loadApp', id: null); 
+                $this->dispatch('countUsers')->to(ListCompany::class);
             }
 
             $user->delete();
             
             $this->confirmingDeletion = null;
             $this->info = "✅ Usuario eliminado correctamente.";
-            
-            // Refrescamos la lista de usuarios actual
+        
             $this->refreshUsers(); 
         }
-    }
-
-    public function selectUser($userId)
-    {
-        $this->selectedUser = $userId;
-        $this->dispatch('loadApp', id:$userId)->to(ListApp::class); // llamamos el evento para actualizar la lista de aplicaciones
     }
 
     public function render()
