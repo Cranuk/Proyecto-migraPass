@@ -20,7 +20,10 @@ class ListUser extends Component
     #[On('loadUsers')]
     public function loadUsers($id = null)
     {
-        if (!$id) return;
+        if (blank($id)) {
+            $this->reset();
+            return;
+        }
 
         $this->companyId = $id;
         $this->refreshUsers();
@@ -55,28 +58,25 @@ class ListUser extends Component
             return;
         }
 
+        sleep(2);
+
         $user = User::find($userId);
+        
         if ($user) {
-            // Validación de seguridad
             if ($user->aplications()->exists()) {
                 $this->info = "❌ Este usuario tiene aplicaciones registradas.";
                 $this->confirmingDeletion = null;
                 return; 
             }
-
-            if ($this->selectedUser == $userId) {
-                Log::info("El usuario a borrar es el seleccionado. Limpiando variables...");
-                
-                $this->selectedUser = null; 
-                $this->dispatch('loadApp', id: null); 
-                $this->dispatch('countUsers')->to(ListCompany::class);
-            }
-
             $user->delete();
             
             $this->confirmingDeletion = null;
             $this->info = "✅ Usuario eliminado correctamente.";
-        
+
+            $this->selectedUser = null; 
+            $this->dispatch('loadApp', id: null);
+            $this->dispatch('countUsers')->to(ListCompany::class);
+
             $this->refreshUsers(); 
         }
     }
