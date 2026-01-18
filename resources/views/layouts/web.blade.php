@@ -24,7 +24,7 @@
         <div class="block-main">
             <div class="sidebar">
                 <!-- NOTE: componentes que tiene el sidebar donde se encuentra la funcionalidad para agregar y listar las empresas-->
-                @livewire('add-company')
+                @livewire('form-company')
                 @livewire('list-company')
             </div>
 

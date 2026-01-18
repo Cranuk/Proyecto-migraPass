@@ -1,7 +1,7 @@
 <section class="content-apps">
+    @if($apps)
     @livewire('add-app')
     {{--@include('includes.alert')--}}
-    @if($apps)
     @if($hasApps)
     <div class="list-app">
         <ul>

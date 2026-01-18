@@ -14,9 +14,9 @@ class ListCompany extends Component
     public $confirmingDeletion = null;
     public $info = '';
 
-    // evento que proviene de AddCompany.php
-    #[On('companyAdded')]
-    public function companyAdded()
+    // evento que proviene de FormCompany.php
+    #[On('refreshCompanies')]
+    public function refreshCompanies()
     {}
 
     // evento que proviene de AddUser.php
@@ -57,6 +57,11 @@ class ListCompany extends Component
                 $this->dispatch('loadUsers', id: null)->to(ListUser::class);
             }
         }
+    }
+
+    public function editCompany($id)
+    {
+        $this->dispatch('editCompany', id: $id)->to(FormCompany::class);
     }
 
     public function render()

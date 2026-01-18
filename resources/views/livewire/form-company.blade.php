@@ -29,13 +29,12 @@
                     </rect>
                 </svg>
             </div>
-
         </div>
         <form wire:submit.prevent="saveCompany" class="form-style" wire:loading.class="form-inactive">
-            <h3>Añadir nueva empresa</h3>
+            <h3>{{ $editingId ? 'Editar Empresa' : 'Nueva Empresa' }}</h3>
 
-            <label for=" company" class="label-text">Nombre de la empresa:</label>
-            <input type="text" id="company" class="form-input-style @error('name') error-border @enderror" wire:model="name" placeholder="Hotel Sheratons" wire:loading.attr="disabled" wire:target="saveCompany">
+            <label for="name" class="label-text">Nombre de la empresa:</label>
+            <input type="text" class="form-input-style @error('name') error-border @enderror" wire:model="name" placeholder="Hotel Sheratons" wire:loading.attr="disabled" wire:target="saveCompany">
 
             @error('name')
             <span class="error-text">{{ $message }}</span>
@@ -47,7 +46,7 @@
                 </button>
 
                 <button type="submit" class="button add">
-                    Crear
+                    {{ $editingId ? 'Actualizar' : 'Guardar' }}
                 </button>
             </div>
         </form>
