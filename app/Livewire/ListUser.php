@@ -29,9 +29,9 @@ class ListUser extends Component
         $this->refreshUsers();
     }
 
-    // evento que proviene de addUser.php
-    #[On('userAdded')]
-    public function userAdded($companyId = null)
+    // evento que proviene de formUser.php
+    #[On('updatedlist')]
+    public function updatedlist($companyId = null)
     {
         if(!$companyId) return;
         if ($this->companyId == $companyId) {
@@ -79,6 +79,11 @@ class ListUser extends Component
 
             $this->refreshUsers(); 
         }
+    }
+
+    public function editUser($id)
+    {
+        $this->dispatch('editUser', id: $id)->to(FormUser::class);
     }
 
     public function render()

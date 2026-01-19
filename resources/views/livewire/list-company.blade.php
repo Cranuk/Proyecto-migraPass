@@ -1,4 +1,5 @@
 <section class="content-companies">
+    @livewire('form-company')
     @include('includes.alert')
     @if($hasCompanies)
     <ul>

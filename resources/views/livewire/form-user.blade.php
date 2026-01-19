@@ -30,8 +30,8 @@
                 </svg>
             </div>
         </div>
-        <form wire:submit.prevent="saveUser" wire:loading.class="form-inactive" class="form-style">
-            <h3>Añadir nuevo usuario</h3>
+        <form wire:submit.prevent="saveUser" class="form-style" wire:loading.class="form-inactive">
+            <h3>{{ $editingId ? 'Editar usuario' : 'Nuevo usuario' }}</h3>
             <label for="name" class="label-text">Nombre:</label>
             <input type="text" class="form-input-style @error('name') error-border @enderror" wire:model="name" placeholder="Javier">
 
@@ -71,7 +71,7 @@
                 </button>
 
                 <button type="submit" class="button add">
-                    Crear
+                    {{ $editingId ? 'Actualizar' : 'Guardar' }}
                 </button>
             </div>
         </form>
