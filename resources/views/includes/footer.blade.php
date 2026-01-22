@@ -12,7 +12,7 @@
             </a>
         </div>
         <div class="footer-copyright">
-            <p>&copy; 2022-<span id="yearNow"></span> Cranuk System. Todos los derechos reservados</p> <span class="footer-no-display"> | </span>
+            <p>&copy; 2022-{{date('Y')}} Cranuk System. Todos los derechos reservados</p> <span class="footer-no-display"> | </span>
             <p>Desarrollado por <a href="https://portfolio-facundomato.vercel.app/" target="_blank" title="Portafolio">Mato Facundo</a></p>
         </div>
     </div>

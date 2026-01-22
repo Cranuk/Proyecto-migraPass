@@ -28,6 +28,7 @@ class ListCompany extends Component
     {
         $this->selectedCompany = $companyId;
         $this->dispatch('loadUsers', id:$companyId)->to(ListUser::class); // llamamos el evento para actualizar la lista de usuarios
+        $this->dispatch('loadApp', id:null)->to(ListApp::class); // llamamos el evento para limpiar la lista de aplicaciones
     }
 
     public function confirmDelete($id)

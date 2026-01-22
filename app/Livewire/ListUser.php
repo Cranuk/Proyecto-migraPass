@@ -5,7 +5,6 @@ namespace App\Livewire;
 use App\Models\User;
 use Livewire\Attributes\On;
 use Livewire\Component;
-use Illuminate\Support\Facades\Log;
 
 class ListUser extends Component
 {
@@ -34,8 +33,17 @@ class ListUser extends Component
     public function updatedlist($companyId = null)
     {
         if(!$companyId) return;
-        if ($this->companyId == $companyId) {
-            $this->refreshUsers();
+        $this->refreshUsers();
+        $this->selectedUser = null;
+        $this->dispatch('loadApp', id:null)->to(ListApp::class);
+    }
+
+    // evento que proviene de listApp.php
+    #[On('askForSelectedUser')]
+    public function askForSelectedUser()
+    {
+        if ($this->selectedUser) {
+            $this->dispatch('setUserId', id: $this->selectedUser)->to(FormApp::class);
         }
     }
 
@@ -45,22 +53,23 @@ class ListUser extends Component
         $this->hasUsers = $this->users->isNotEmpty();
     }
 
-    public function selectUser($userId)
+    public function selectUser($id)
     {
-        $this->selectedUser = $userId;
-        $this->dispatch('loadApp', id:$userId)->to(ListApp::class); // llamamos el evento para actualizar la lista de aplicaciones
+        $this->selectedUser = $id;
+        $this->dispatch('loadApp', id:$id)->to(ListApp::class); // llamamos el evento para actualizar la lista de aplicaciones
+        $this->dispatch('setUserId', id:$id); // enviamos el id del usuarioal formulario de aplicaciones
     }
 
-    public function confirmDelete($userId)
+    public function confirmDelete($id)
     {
-        if ($this->confirmingDeletion !== $userId) {
-            $this->confirmingDeletion = $userId;
+        if ($this->confirmingDeletion !== $id) {
+            $this->confirmingDeletion = $id;
             return;
         }
 
         sleep(2);
 
-        $user = User::find($userId);
+        $user = User::find($id);
         
         if ($user) {
             if ($user->aplications()->exists()) {
