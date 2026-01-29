@@ -1,47 +1,63 @@
 <section class="content-apps">
     @if($apps)
     @livewire('form-app')
-    {{--@include('includes.alert')--}}
+    @include('includes.alert')
     @if($hasApps)
-    <div class="list-app">
-        <ul>
-            @foreach($apps as $app)
-            <li @if($selectedApp===$app->id) class="selected" @endif>
-                <div wire:click="selectApp({{ $app->id }})">
-                    <div class="item">
-                        {{ $app->name }}
-                        <span wire:loading wire:target="selectApp({{ $app->id }})">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="hsl(0, 0%, 100%)" viewBox="0 0 24 24">
-                                <rect x="1" y="4" width="6" height="14" opacity="1">
-                                    <animate id="spinner_aqiq" begin="0;spinner_xVBj.end-0.25s" attributeName="y" dur="0.75s" values="1;5" fill="freeze" />
-                                    <animate begin="0;spinner_xVBj.end-0.25s" attributeName="height" dur="0.75s" values="22;14" fill="freeze" />
-                                    <animate begin="0;spinner_xVBj.end-0.25s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze" />
-                                </rect>
-                                <rect x="9" y="4" width="6" height="14" opacity=".4">
-                                    <animate begin="spinner_aqiq.begin+0.15s" attributeName="y" dur="0.75s" values="1;5" fill="freeze" />
-                                    <animate begin="spinner_aqiq.begin+0.15s" attributeName="height" dur="0.75s" values="22;14" fill="freeze" />
-                                    <animate begin="spinner_aqiq.begin+0.15s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze" />
-                                </rect>
-                                <rect x="17" y="4" width="6" height="14" opacity=".3">
-                                    <animate id="spinner_xVBj" begin="spinner_aqiq.begin+0.3s" attributeName="y" dur="0.75s" values="1;5" fill="freeze" />
-                                    <animate begin="spinner_aqiq.begin+0.3s" attributeName="height" dur="0.75s" values="22;14" fill="freeze" />
-                                    <animate begin="spinner_aqiq.begin+0.3s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze" />
-                                </rect>
-                            </svg>
-                        </span>
-                        @if($selectedApp === $app->id)
-                        <div class="tools">
-                            @include('includes.buttons.button-delete-app', ['appId' => $app->id])
-                            @include('includes.buttons.button-edit-app', ['appId' => $app->id])
+    <ul>
+        @foreach($apps as $app)
+        <li @if($selectedApp===$app->id) class="active" @endif>
+            <div wire:click="selectApp({{ $app->id }})" class="item-content">
+                <div class="alias">@acronym($app->name)</div>
+                <div class="card-content">
+                    <div class="data-content">
+                        <div class="name">{{ $app->name }}</div>
+                    </div>
+                    <div class="data-content">
+                        <div class="note">
+                            {{ Str::limit($app?->notes ?? 'Sin notas', 30) }}
                         </div>
-                        @endif
                     </div>
                 </div>
+                <span wire:loading wire:target="selectApp({{ $app->id }})">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="hsl(0, 0%, 100%)" viewBox="0 0 24 24">
+                        <rect x="1" y="4" width="6" height="14" opacity="1">
+                            <animate id="spinner_aqiq" begin="0;spinner_xVBj.end-0.25s" attributeName="y" dur="0.75s" values="1;5" fill="freeze" />
+                            <animate begin="0;spinner_xVBj.end-0.25s" attributeName="height" dur="0.75s" values="22;14" fill="freeze" />
+                            <animate begin="0;spinner_xVBj.end-0.25s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze" />
+                        </rect>
+                        <rect x="9" y="4" width="6" height="14" opacity=".4">
+                            <animate begin="spinner_aqiq.begin+0.15s" attributeName="y" dur="0.75s" values="1;5" fill="freeze" />
+                            <animate begin="spinner_aqiq.begin+0.15s" attributeName="height" dur="0.75s" values="22;14" fill="freeze" />
+                            <animate begin="spinner_aqiq.begin+0.15s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze" />
+                        </rect>
+                        <rect x="17" y="4" width="6" height="14" opacity=".3">
+                            <animate id="spinner_xVBj" begin="spinner_aqiq.begin+0.3s" attributeName="y" dur="0.75s" values="1;5" fill="freeze" />
+                            <animate begin="spinner_aqiq.begin+0.3s" attributeName="height" dur="0.75s" values="22;14" fill="freeze" />
+                            <animate begin="spinner_aqiq.begin+0.3s" attributeName="opacity" dur="0.75s" values="1;.2" fill="freeze" />
+                        </rect>
+                    </svg>
+                </span>
+                @if($selectedApp === $app->id)
+                <div class="tools">
+                    @include('includes.buttons.button-delete-app', ['appId' => $app->id])
+                    @include('includes.buttons.button-edit-app', ['appId' => $app->id])
+                    @if($app->url_aplication)
+                    <a class="url" href="{{ $app->url_aplication }}" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-external-link">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
+                            <path d="M11 13l9 -9" />
+                            <path d="M15 4h5v5" />
+                        </svg>
+                    </a>
+                    @endif
+                </div>
+                @endif
+            </div>
 
-            </li>
-            @endforeach
-        </ul>
-    </div>
+        </li>
+        @endforeach
+    </ul>
     @else
     <p class="message">No hay aplicaciones registradas para este usuario.</p>
     @endif

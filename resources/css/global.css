@@ -167,11 +167,11 @@ div {
             padding-right: 5px;
         }
 
-        .card-user {
+        .card-content {
             display: flex;
             flex-direction: column;
 
-            .data-user {
+            .data-content {
                 display: flex;
                 flex-direction: row;
             }
@@ -203,12 +203,22 @@ div {
     font-style: italic;
 }
 
-.amount {
+.amount,
+.note {
     color: var(--text-secondary-color);
     font-size: 10px;
 }
 
-.tools {}
+.url {
+    background-color: var(--gray);
+    border: 1px solid var(--border-color);
+}
+
+.tools {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
 
 .relative {
     position: relative;

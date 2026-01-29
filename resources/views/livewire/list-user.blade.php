@@ -9,12 +9,12 @@
             <div wire:click="selectUser({{ $user->id }})">
                 <div class="item-content" wire:click="selectUser({{ $user->id }})">
                     <div class="alias">@acronym($user->name)</div>
-                    <div class="card-user">
-                        <div class="data-user">
+                    <div class="card-content">
+                        <div class="data-content">
                             <div class="name">{{ $user->name }}</div>
                             <div class="surname">{{ $user->surname }}</div>
                         </div>
-                        <div class="data-user">
+                        <div class="data-content">
                             <div class="sector">{{ $user->sector }}</div>
                             &nbsp;|&nbsp;
                             <div class="fecha">{{ $user->created_at }}</div>
