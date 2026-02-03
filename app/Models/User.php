@@ -25,6 +25,6 @@ class User extends Model
 
     public function aplications()
     {
-        return $this->hasMany(Device::class);
+        return $this->hasMany(Aplication::class);
     }
 }

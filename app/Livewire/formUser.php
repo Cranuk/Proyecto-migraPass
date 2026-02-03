@@ -6,10 +6,11 @@ use App\Models\Company;
 use App\Models\User;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use App\Traits\HasNotifications;
 
 class FormUser extends Component
 {
-
+    use HasNotifications;
     public $open = false;
     public $companies;
     public $name;
@@ -40,7 +41,7 @@ class FormUser extends Component
             'companyId' => 'required|exists:companies,id',
         ]);
 
-        sleep(2);
+        sleep(1);
 
         if ($this->editingId) {
             $user = User::find($this->editingId);
@@ -50,6 +51,7 @@ class FormUser extends Component
                 'sector' => $this->sector,
                 'company_id' => $this->companyId,
             ]);
+            $this->dispatch('editedUser', message: '✅ Usuario editado correctamente')->to(ListUser::class);
         } else {
             User::create([
                 'name' => $this->name,
@@ -57,6 +59,7 @@ class FormUser extends Component
                 'sector' => $this->sector,
                 'company_id' => $this->companyId,
             ]);
+            $this->dispatch('savedUser', message: '✅ Usuario creado correctamente')->to(ListUser::class);
         }
 
         $this->dispatch('updatedlist', companyId: $this->companyId)->to(ListUser::class); // actualizamos la lista si agregamos o editamos un usuario
@@ -71,7 +74,7 @@ class FormUser extends Component
 
     public function closeModal()
     {
-        sleep(2);
+        sleep(1);
         $this->reset(['name', 'surname', 'sector', 'companyId']);
         $this->resetErrorBag();
         $this->open = false;

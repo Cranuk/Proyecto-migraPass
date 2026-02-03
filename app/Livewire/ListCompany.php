@@ -5,19 +5,30 @@ namespace App\Livewire;
 use App\Models\Company;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use App\Traits\HasNotifications;
 
 class ListCompany extends Component
 {
+    use HasNotifications;
     // NOTE: las variables que son publicas automaticamente son llamadas por livewire para poder ser usadas en la vista del componente
     public $hasCompanies;
     public $selectedCompany;
     public $confirmingDeletion = null;
-    public $info = '';
 
     // evento que proviene de FormCompany.php
     #[On('refreshCompanies')]
     public function refreshCompanies()
     {}
+
+    #[On('savedCompany')]
+    public function savedCompany($message){
+        $this->notify($message);
+    }
+
+    #[On('editedCompany')]
+    public function editedCOmpany($message){
+        $this->notify($message);
+    }
 
     // evento que proviene de AddUser.php
     #[On('countUsers')]
@@ -38,13 +49,13 @@ class ListCompany extends Component
             return;
         }
 
-        sleep(2);
+        sleep(1);
 
         $company = Company::find($id);
 
         if ($company) {
             if ($company->users()->exists()) {
-                $this->info = "❌ Esta empresa tiene usuarios.";
+                $this->notify("❌ Esta empresa tiene usuarios registrados.");
                 $this->confirmingDeletion = null;
                 return;
             }
@@ -53,7 +64,7 @@ class ListCompany extends Component
             $this->confirmingDeletion = null;
             
             if ($this->selectedCompany === $id) {
-                $this->info = "✅ Empresa eliminada correctamente.";
+                $this->notify("✅ Empresa eliminada correctamente.");
                 $this->selectedCompany = null;
                 $this->dispatch('loadUsers', id: null)->to(ListUser::class);
             }

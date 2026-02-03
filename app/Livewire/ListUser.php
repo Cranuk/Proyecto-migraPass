@@ -5,15 +5,16 @@ namespace App\Livewire;
 use App\Models\User;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use App\Traits\HasNotifications;
 
 class ListUser extends Component
 {
+    use HasNotifications;
     public $companyId;
     public $hasUsers;
     public $users;
     public $selectedUser;
     public $confirmingDeletion = null;
-    public $info = '';
 
     // evento que proviene de listCompany.php
     #[On('loadUsers')]
@@ -36,6 +37,16 @@ class ListUser extends Component
         $this->refreshUsers();
         $this->selectedUser = null;
         $this->dispatch('loadApp', id:null)->to(ListApp::class);
+    }
+
+    #[On('savedUser')]
+    public function savedUser($message){
+        $this->notify($message);
+    }
+
+    #[On('editedUser')]
+    public function editedUser($message){
+        $this->notify($message);
     }
 
     // evento que proviene de listApp.php
@@ -67,20 +78,20 @@ class ListUser extends Component
             return;
         }
 
-        sleep(2);
+        sleep(1);
 
         $user = User::find($id);
         
         if ($user) {
             if ($user->aplications()->exists()) {
-                $this->info = "❌ Este usuario tiene aplicaciones registradas.";
+                $this->notify("❌ Este usuario tiene aplicaciones registradas.");
                 $this->confirmingDeletion = null;
                 return; 
             }
             $user->delete();
             
             $this->confirmingDeletion = null;
-            $this->info = "✅ Usuario eliminado correctamente.";
+            $this->notify("✅ Usuario eliminado correctamente.");
 
             $this->selectedUser = null; 
             $this->dispatch('loadApp', id: null);

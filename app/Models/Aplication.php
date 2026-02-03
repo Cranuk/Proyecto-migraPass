@@ -14,7 +14,7 @@ class Aplication extends Model
         'name',
         'user_aplication',
         'password_aplication',
-        'url_application',
+        'url_aplication',
         'notes',
     ];
 

@@ -5,9 +5,11 @@ namespace App\Livewire;
 use App\Models\Company;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use App\Traits\HasNotifications;
 
 class FormCompany extends Component
 {
+    use HasNotifications;
     public $open = false;
     public $name = '';
     public $editingId = null;
@@ -28,13 +30,15 @@ class FormCompany extends Component
             'name' => 'required|string|min:3|max:255|unique:companies,name',
         ]);
 
-        sleep(2);
+        sleep(1);
 
         if ($this->editingId) {
             $company = Company::find($this->editingId);
             $company->update(['name' => $this->name]);
+            $this->dispatch('editedCompany', message: '✅ Empresa editada correctamente')->to(ListCompany::class);
         } else {
             Company::create(['name' => $this->name]);
+            $this->dispatch('savedCompany', message: '✅ Empresa guardada correctamente')->to(ListCompany::class);
         }
         $this->dispatch('refreshCompanies')->to(ListCompany::class); // actualizo la lista de empresas
         $this->reset(['open', 'name', 'editingId']);
@@ -47,7 +51,7 @@ class FormCompany extends Component
 
     public function closeModal()
     {
-        sleep(2);
+        sleep(1);
         $this->reset(['name']);
         $this->resetErrorBag();
         $this->open = false;

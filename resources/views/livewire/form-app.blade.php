@@ -55,10 +55,10 @@
             <span class="error-text">{{ $message }}</span>
             @enderror
 
-            <label for="url_application" class="label-text">URL:</label>
-            <input type="text" class="form-input-style @error('url_application') error-border @enderror" wire:model="url_application" placeholder="https://example.com">
+            <label for="url_aplication" class="label-text">URL:</label>
+            <input type="text" class="form-input-style @error('url_aplication') error-border @enderror" wire:model="url_aplication" placeholder="https://example.com">
 
-            @error('url_application')
+            @error('url_aplication')
             <span class="error-text">{{ $message }}</span>
             @enderror
 

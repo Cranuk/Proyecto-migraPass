@@ -5,16 +5,18 @@ namespace App\Livewire;
 use App\Models\Aplication;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use App\Traits\HasNotifications;
 
 class FormApp extends Component
 {
+    use HasNotifications;
     public $open = false;
     public $editingId = null;
     public $user_id;
     public $name;
     public $user_aplication;
     public $password_aplication;
-    public $url_application;
+    public $url_aplication;
     public $notes;
 
     #[On('setUserId')]
@@ -34,7 +36,7 @@ class FormApp extends Component
             $this->name = $app->name;
             $this->user_aplication = $app->user_aplication;
             $this->password_aplication = $app->password_aplication;
-            $this->url_application = $app->url_application;
+            $this->url_aplication = $app->url_aplication;
             $this->notes = $app->notes;
             $this->open = true;
         }
@@ -45,11 +47,11 @@ class FormApp extends Component
             'name' => 'required|string|min:3|max:255',
             'user_aplication' => 'required|string|min:3|max:255',
             'password_aplication' => 'required|string|min:3|max:255',
-            'url_application' => 'required|string|min:3|max:255',
+            'url_aplication' => 'required|string|min:3|max:255',
             'notes' => 'nullable|string',
         ]);
 
-        sleep(2);
+        sleep(1);
 
         if ($this->editingId) {
             $app = Aplication::find($this->editingId);
@@ -57,26 +59,28 @@ class FormApp extends Component
                 'name' => $this->name,
                 'user_aplication' => $this->user_aplication,
                 'password_aplication' => $this->password_aplication,
-                'url_application' => $this->url_application,
+                'url_aplication' => $this->url_aplication,
                 'notes' => $this->notes,
             ]);
+            $this->dispatch('editedApp', message: '✅ Aplicacion editada correctamente')->to(ListApp::class);
         } else {
             Aplication::create([
                 'user_id' => $this->user_id,
                 'name' => $this->name,
                 'user_aplication' => $this->user_aplication,
                 'password_aplication' => $this->password_aplication,
-                'url_application' => $this->url_application,
+                'url_aplication' => $this->url_aplication,
                 'notes' => $this->notes,
             ]);
+            $this->dispatch('savedApp', message: '✅ Aplicacion creada correctamente')->to(ListApp::class);
         }
-        $this->reset(['open', 'name', 'user_aplication', 'password_aplication', 'url_application', 'notes']);
+        $this->reset(['open', 'name', 'user_aplication', 'password_aplication', 'url_aplication', 'notes']);
         $this->dispatch('loadApp', id: $this->user_id)->to(ListApp::class);
     }
     
     public function openModal()
     {
-        $this->reset(['name', 'user_aplication', 'password_aplication', 'url_application', 'notes', 'editingId']);
+        $this->reset(['name', 'user_aplication', 'password_aplication', 'url_aplication', 'notes', 'editingId']);
         $this->dispatch('askForSelectedUser')->to(ListUser::class);
         $this->open = true;
     }

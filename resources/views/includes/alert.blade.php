@@ -1,6 +1,5 @@
 @if($info)
-<div class="alert alert-notice">
+<div wire:poll.2s="clearInfo" class="alert alert-notice">
     {{ $info }}
-    <button class="button delete" wire:click="$set('info', '')">x</button>
 </div>
 @endif
