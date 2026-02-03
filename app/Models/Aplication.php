@@ -18,6 +18,10 @@ class Aplication extends Model
         'notes',
     ];
 
+    protected $casts = [
+        'password_aplication' => 'encrypted',
+    ];
+
     /**
      * Accessor para formatear la URL automáticamente.
      * El nombre del método debe ser el nombre de la columna en CamelCase.

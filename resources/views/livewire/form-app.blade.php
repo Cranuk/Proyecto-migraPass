@@ -32,7 +32,7 @@
         </div>
         <form wire:submit.prevent="saveApp" class="form-style" wire:loading.class="form-inactive">
             <h3>{{ $editingId ? 'Editar aplicación' : 'Nueva aplicación' }}</h3>
-            <h4><strong>ID Usuario destino:</strong> {{ $user_id ?? 'No seleccionado' }}</h4>
+            {{--<h4><strong>ID Usuario destino:</strong> {{ $user_id ?? 'No seleccionado' }}</h4>--}}
 
             <label for="name" class="label-text">Nombre de la aplicacion:</label>
             <input type="text" class="form-input-style @error('name') error-border @enderror" wire:model="name" placeholder="X">
@@ -49,7 +49,11 @@
             @enderror
 
             <label for="password_aplication" class="label-text">Contraseña:</label>
-            <input type="password" class="form-input-style @error('password_aplication') error-border @enderror" wire:model="password_aplication" placeholder="Xpass">
+            <div class="form-input-plus-button">
+                <input type="{{ $showPassword ? 'text' : 'password' }}" class="form-input-style @error('password_aplication') error-border @enderror" wire:model="password_aplication" placeholder="Xpass">
+                @include('includes.buttons.button-show-password')
+            </div>
+
 
             @error('password_aplication')
             <span class="error-text">{{ $message }}</span>

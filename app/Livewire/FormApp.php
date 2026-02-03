@@ -18,6 +18,7 @@ class FormApp extends Component
     public $password_aplication;
     public $url_aplication;
     public $notes;
+    public $showPassword = false;
 
     #[On('setUserId')]
     public function setUserId($id)
@@ -40,6 +41,11 @@ class FormApp extends Component
             $this->notes = $app->notes;
             $this->open = true;
         }
+    }
+
+    public function toggleShowPassword()
+    {
+        $this->showPassword = !$this->showPassword;
     }
 
     public function saveApp(){

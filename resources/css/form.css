@@ -12,6 +12,13 @@
     font-size: 12px;
     height: 35px;
     padding: 5px;
+    width: 100%;
+}
+
+.form-input-plus-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .label-text {
