@@ -41,20 +41,10 @@
                 <div class="tools">
                     @include('includes.buttons.button-delete-app', ['appId' => $app->id])
                     @include('includes.buttons.button-edit-app', ['appId' => $app->id])
-                    @if($app->url_aplication)
-                    <a class="url" href="{{ $app->url_aplication }}" target="_blank" rel="noopener noreferrer" title="Ir a la pagina">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-external-link">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
-                            <path d="M11 13l9 -9" />
-                            <path d="M15 4h5v5" />
-                        </svg>
-                    </a>
-                    @endif
+                    @include('includes.buttons.button-details-app', ['appId' => $app->id])
                 </div>
                 @endif
             </div>
-
         </li>
         @endforeach
     </ul>

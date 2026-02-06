@@ -77,6 +77,11 @@ class ListApp extends Component
         $this->hasApps = $this->apps->isNotEmpty();
     }
 
+    public function detailsApp($id)
+    {
+        $this->dispatch('detailsApp', id: $id)->to(FormApp::class);
+    }
+
     public function render()
     {
         return view('livewire.list-app');

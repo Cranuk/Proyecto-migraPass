@@ -12,6 +12,7 @@ class FormApp extends Component
     use HasNotifications;
     public $open = false;
     public $editingId = null;
+    public $cardAppOpen = null;
     public $user_id;
     public $name;
     public $user_aplication;
@@ -30,6 +31,24 @@ class FormApp extends Component
     #[On('editApp')]
     public function editApp($id)
     {
+        $this->loadAppData($id);
+        $this->cardAppOpen = false;
+    }
+
+    #[On('detailsApp')]
+    public function detailsApp($id)
+    {
+        $this->loadAppData($id);
+        $this->cardAppOpen = true;
+    }
+
+    public function toggleShowPassword()
+    {
+        $this->showPassword = !$this->showPassword;
+    }
+
+    private function loadAppData($id)
+    {
         $app = Aplication::find($id);
         if ($app) {
             $this->editingId = $id;
@@ -41,11 +60,6 @@ class FormApp extends Component
             $this->notes = $app->notes;
             $this->open = true;
         }
-    }
-
-    public function toggleShowPassword()
-    {
-        $this->showPassword = !$this->showPassword;
     }
 
     public function saveApp(){
@@ -94,6 +108,7 @@ class FormApp extends Component
     public function closeModal()
     {
         $this->open = false;
+        $this->cardAppOpen = false;
     }
 
     public function render()

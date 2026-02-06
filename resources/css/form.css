@@ -15,10 +15,15 @@
     width: 100%;
 }
 
-.form-input-plus-button {
+.form-input-plus-button,
+.label-text-plus {
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+.label-text-plus {
+    align-items: baseline;
 }
 
 .label-text {

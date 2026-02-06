@@ -30,6 +30,9 @@
                 </svg>
             </div>
         </div>
+        @if($cardAppOpen)
+        @include('livewire.details-app')
+        @else
         <form wire:submit.prevent="saveApp" class="form-style" wire:loading.class="form-inactive">
             <h3>{{ $editingId ? 'Editar aplicación' : 'Nueva aplicación' }}</h3>
             {{--<h4><strong>ID Usuario destino:</strong> {{ $user_id ?? 'No seleccionado' }}</h4>--}}
@@ -83,6 +86,7 @@
                 </button>
             </div>
         </form>
+        @endif
     </div>
     @endif
 </div>
