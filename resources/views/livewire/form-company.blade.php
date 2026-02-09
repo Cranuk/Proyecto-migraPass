@@ -34,7 +34,7 @@
             <h3>{{ $editingId ? 'Editar Empresa' : 'Nueva Empresa' }}</h3>
 
             <label for="name" class="label-text">Nombre de la empresa:</label>
-            <input type="text" class="form-input-style @error('name') error-border @enderror" wire:model="name" placeholder="Hotel Sheratons" wire:loading.attr="disabled" wire:target="saveCompany">
+            <input type="text" class="form-input-style @error('name') error-border @enderror" wire:model="name" placeholder="TestBusiness" wire:loading.attr="disabled" wire:target="saveCompany">
 
             @error('name')
             <span class="error-text">{{ $message }}</span>

@@ -33,14 +33,14 @@
         <form wire:submit.prevent="saveUser" class="form-style" wire:loading.class="form-inactive">
             <h3>{{ $editingId ? 'Editar usuario' : 'Nuevo usuario' }}</h3>
             <label for="name" class="label-text">Nombre:</label>
-            <input type="text" class="form-input-style @error('name') error-border @enderror" wire:model="name" placeholder="Javier">
+            <input type="text" class="form-input-style @error('name') error-border @enderror" wire:model="name" placeholder="Usuario">
 
             @error('name')
             <span class="error-text">{{ $message }}</span>
             @enderror
 
             <label for="surname" class="label-text">Apellido</label>
-            <input type="text" class="form-input-style @error('surname') error-border @enderror" wire:model="surname" placeholder="Saucedo">
+            <input type="text" class="form-input-style @error('surname') error-border @enderror" wire:model="surname" placeholder="Test">
 
             @error('surname')
             <span class="error-text">{{ $message }}</span>

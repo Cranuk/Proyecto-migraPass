@@ -5,7 +5,12 @@ import ClipboardJS from 'clipboard';
 const clipboard = new ClipboardJS('.btn-copy');
 
 clipboard.on('success', function(e) {
-    console.log('Texto copiado:', e.text);
+const btn = e.trigger;
+    btn.classList.add('btn-copy-success');
+    setTimeout(() => {
+        btn.classList.remove('btn-copy-success');
+    }, 2000);
+
     e.clearSelection();
 });
 

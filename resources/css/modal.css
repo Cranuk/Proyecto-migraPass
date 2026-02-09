@@ -40,3 +40,50 @@
     gap: 5px;
     align-items: baseline;
 }
+
+.btn-copy {
+    position: relative;
+}
+
+/* El globo de texto */
+.btn-copy-success::after {
+    content: "¡Copiado!";
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--green);
+    color: var(--gray);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 10;
+    animation: fadeInOut 0.3s ease;
+}
+
+/* El triangulito debajo del globo */
+.btn-copy-success::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--green) transparent transparent transparent;
+    z-index: 10;
+}
+
+@keyframes fadeInOut {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
