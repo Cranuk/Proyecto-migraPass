@@ -12,7 +12,7 @@ export default defineConfig({
         host: '0.0.0.0',
         port: 5176,
         hmr: {
-            host: 'migrapass.test'
+            host: 'localhost',
         },
     },
 });
