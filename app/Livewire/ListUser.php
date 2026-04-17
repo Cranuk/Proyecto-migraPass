@@ -78,7 +78,7 @@ class ListUser extends Component
             return;
         }
 
-        sleep(1);
+        sleep(5);
 
         $user = User::find($id);
         

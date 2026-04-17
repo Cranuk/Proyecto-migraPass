@@ -30,7 +30,7 @@ class FormCompany extends Component
             'name' => 'required|string|min:3|max:255|unique:companies,name',
         ]);
 
-        sleep(1);
+        sleep(5);
 
         if ($this->editingId) {
             $company = Company::find($this->editingId);
@@ -51,7 +51,7 @@ class FormCompany extends Component
 
     public function closeModal()
     {
-        sleep(1);
+        sleep(5);
         $this->reset(['name']);
         $this->resetErrorBag();
         $this->open = false;

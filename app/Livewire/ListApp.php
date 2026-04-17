@@ -51,7 +51,7 @@ class ListApp extends Component
             return;
         }
 
-        sleep(1);
+        sleep(5);
 
         $app = Aplication::find($id);
 

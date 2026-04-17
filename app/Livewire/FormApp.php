@@ -71,7 +71,7 @@ class FormApp extends Component
             'notes' => 'nullable|string',
         ]);
 
-        sleep(1);
+        sleep(5);
 
         if ($this->editingId) {
             $app = Aplication::find($this->editingId);

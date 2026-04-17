@@ -49,7 +49,7 @@ class ListCompany extends Component
             return;
         }
 
-        sleep(1);
+        sleep(5);
 
         $company = Company::find($id);
 

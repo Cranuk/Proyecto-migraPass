@@ -41,7 +41,7 @@ class FormUser extends Component
             'companyId' => 'required|exists:companies,id',
         ]);
 
-        sleep(1);
+        sleep(5);
 
         if ($this->editingId) {
             $user = User::find($this->editingId);
@@ -74,7 +74,7 @@ class FormUser extends Component
 
     public function closeModal()
     {
-        sleep(1);
+        sleep(5);
         $this->reset(['name', 'surname', 'sector', 'companyId']);
         $this->resetErrorBag();
         $this->open = false;
